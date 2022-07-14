@@ -1,0 +1,61 @@
+{
+  "id": "6e47e6b2-7a94-4ee9-834c-1b3590385dc6",
+  "uid": "consequatur-ipsam-deserunt",
+  "type": "my-desafio-type",
+  "data": {
+    "title": "mesh scalable metrics",
+    "subtitle": "streamline intuitive e-markets",
+    "author": "cultivate value-added functionalities",
+    "banner": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": "Placeholder image",
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1600804931749-2da4ce26c869?w=900&h=500&fit=crop"
+    },
+    "content": [
+      {
+        "heading": "repurpose proactive communities",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Cillum irure mollit labore anim officia consectetur voluptate aliqua ullamco voluptate veniam laboris nostrud cupidatat sunt. Ad pariatur cupidatat in reprehenderit qui incididunt sint reprehenderit culpa eu anim. Ad proident sit labore elit aute eiusmod officia.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "heading": "expedite frictionless e-services",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Voluptate ipsum enim reprehenderit ullamco id do non laboris culpa dolor dolor reprehenderit non. Et veniam nostrud esse officia qui do nisi consequat est dolor aliquip ipsum sunt proident.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "heading": "integrate value-added e-tailers",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Esse officia veniam voluptate non fugiat officia eiusmod nulla consectetur non qui voluptate ullamco aliqua cillum.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "heading": "orchestrate value-added platforms",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Ut eu qui ipsum est eu tempor fugiat dolor cillum ut adipisicing sint veniam. Ex consectetur adipisicing magna consectetur reprehenderit anim pariatur ullamco enim dolore anim est ut adipisicing. Mollit sunt aliqua ex eiusmod consequat dolor culpa non et ad voluptate reprehenderit veniam consectetur.",
+            "spans": []
+          }
+        ]
+      }
+    ]
+  }
+}

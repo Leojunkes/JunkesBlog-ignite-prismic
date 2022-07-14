@@ -1,0 +1,14 @@
+{
+  "_cts": {
+    "my-desafio-type": {
+      "content": {
+        "body": {
+          "config": {
+            "patternType": "PARAGRAPH",
+            "blocks": 1
+          }
+        }
+      }
+    }
+  }
+}

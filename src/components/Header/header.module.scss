@@ -1,1 +1,35 @@
-// TODO
+
+
+.headerContent{
+  max-width: 1440px;
+  margin-left: 23rem;
+
+
+
+  display: flex;
+  align-items: center;
+
+  a{
+    display: flex;
+    flex-direction: row;
+
+
+    img{
+      margin-right: 0.375rem;
+    }
+  }
+
+  img{
+    margin-right: 1rem;
+  }
+}
+
+.dot{
+  width: 0.25rem;
+  height: 0.25rem;
+  background: var(--pink-800);
+  border-radius: 100%;
+  margin-top: 1rem;
+}
+
+
