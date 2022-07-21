@@ -48,13 +48,13 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
     setNextPage(posts.next_page);
 
     const result: Post = posts.results.map(post => {
-      const date = new Date(post.first_publication_date);
-      const publicationdateFormated = format(date, 'd LLL yyyy', {
-        locale: ptBR,
-      });
+      // const date = new Date(post.first_publication_date);
+      // const publicationdateFormated = format(date, 'd LLL yyyy', {
+      //   locale: ptBR,
+      // });
       return {
         uid: post.uid,
-        first_publication_date: publicationdateFormated,
+        first_publication_date: post.first_publication_date,
         data: {
           title: post.data.title,
           subtitle: post.data.subtitle,
@@ -81,6 +81,10 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
         <div className={styles.posts}>
           {renderPost.length > 0 ? (
             renderPost.map(result => {
+              const date = new Date(result.first_publication_date);
+              const publicationdateFormated = format(date, 'd LLL yyyy', {
+                locale: ptBR,
+              });
               return (
                 <div className={styles.link} key={result.uid}>
                   <Link href={`/post/${result?.uid}`}>
@@ -89,7 +93,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
                       <h2>{result.data?.subtitle}</h2>
                       <div className={styles.contentIcons}>
                         <FiCalendar size={20} />
-                        <p>{result.first_publication_date}</p>
+                        <p>{publicationdateFormated}</p>
                         <FiUser size={20} />
                         <p>{result.data?.author}</p>
                       </div>
@@ -124,12 +128,12 @@ export const getStaticProps: GetStaticProps = async () => {
   // TODO
   const results = postsResponse.results.map(post => {
     const date = new Date(post.first_publication_date);
-    const publicationdateFormated = format(date, 'd LLL yyyy', {
-      locale: ptBR,
-    });
+    // const publicationdateFormated = format(date, 'd LLL yyyy', {
+    //   locale: ptBR,
+    // });
     return {
       uid: post.uid,
-      first_publication_date: publicationdateFormated,
+      first_publication_date: post.first_publication_date,
       data: {
         title: post.data.title,
         subtitle: post.data.subtitle,
@@ -143,6 +147,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 
   return {
+    revalidate: 60 * 60 * 24, // 24 hours
     props: { postsPagination },
   };
 };

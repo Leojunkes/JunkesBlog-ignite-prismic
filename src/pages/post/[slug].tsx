@@ -11,9 +11,10 @@ import Header from '../../components/Header';
 
 // import commonStyles from '../../styles/common.module.scss';
 import styles from './post.module.scss';
+import { getMinutesToRead } from '../../utils/getMinutesToRead';
 
 interface Post {
-  first_publication_date: string | null;
+  first_publication_date: string;
   data: {
     title: string;
     banner: {
@@ -37,10 +38,14 @@ interface PostProps {
 export default function Post({ post }: PostProps): JSX.Element {
   const { isFallback } = useRouter();
   console.log('Post', post);
-  const date = new Date(post.first_publication_date);
-  const publicationdateFormated = format(date, 'd LLL yyyy', {
-    locale: ptBR,
-  });
+  // const date = new Date(post.first_publication_date);
+  const publicationdateFormated = format(
+    new Date(post.first_publication_date),
+    'd LLL yyyy',
+    {
+      locale: ptBR,
+    }
+  );
 
   // const wordCount = post.data.content.map(content => {
   //   const headCount = content.heading.split(' ');
@@ -51,16 +56,16 @@ export default function Post({ post }: PostProps): JSX.Element {
 
   // console.log(wordCount);
 
-  const contentHtml = post.data.content.map(content => {
-    return RichText.asHtml(content.body);
-  });
+  // const contentHtml = post.data.content.map(content => {
+  //   return RichText.asHtml(content.body);
+  // });
 
-  const total = contentHtml.reduce((sumTotal, words) => {
-    return sumTotal + words;
-  });
+  // const total = contentHtml.reduce((sumTotal, words) => {
+  //   return sumTotal + words;
+  // });
 
-  const wordCount = Math.ceil(total.split(' ').length / 200);
-  console.log(wordCount);
+  // const wordCount = 4; // Math.ceil(total.split(' ').length / 200);
+  // console.log(wordCount);
 
   return (
     <>
@@ -83,14 +88,18 @@ export default function Post({ post }: PostProps): JSX.Element {
               <FiUser size={20} />
               <span>{post?.data.author}</span>
               <FiClock size={20} />
-              <span>{wordCount} min</span>
+              <span>{getMinutesToRead(post.data.content)}</span>
             </div>
             {post ? (
               post.data.content.map(content => {
                 return (
                   <div key={content.heading}>
                     <h2>{content.heading}</h2>
-                    <p>{content.body[0].text}</p>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: RichText.asHtml(content.body),
+                      }}
+                    />
                   </div>
                 );
               })
@@ -123,11 +132,29 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const { slug } = params;
 
-  const post = await prismic.getByUID('my-desafio-type', String(slug));
+  const response = await prismic.getByUID('my-desafio-type', String(slug));
 
   // TODO
-
+  // return {props: {response}};
   return {
-    props: { post },
+    props: {
+      post: {
+        uid: response.uid!,
+        first_publication_date: response.first_publication_date,
+        data: {
+          title: response.data.title,
+          subtitle: response.data.subtitle,
+          author: response.data.author,
+          banner: {
+            alt: response.data.banner.alt,
+            url: response.data.banner.url,
+          },
+          content: response.data.content.map((content: any) => ({
+            heading: content.heading,
+            body: content.body,
+          })),
+        },
+      },
+    },
   };
 };
